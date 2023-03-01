@@ -47,7 +47,11 @@ const ItemList = ({ item, setNotDone }) => {
         </div>
         <span className={`quantity l${done} ${lineThrough}`}>{quantity}</span>
       </div>
-      {remark && (<span>來自{orderTable}的留言: {remark}</span>)}
+      {remark && (
+        <span>
+          來自{orderTable}的留言: {remark}
+        </span>
+      )}
     </>
   );
 };
