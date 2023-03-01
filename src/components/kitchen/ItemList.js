@@ -2,8 +2,16 @@ import axios from "axios";
 import React, { useState } from "react";
 
 const ItemList = ({ item, setNotDone }) => {
-  const { itemNum, quantity, mealName, doneOrNot, deliverTable, createTime } =
-    item;
+  const {
+    itemNum,
+    quantity,
+    mealName,
+    doneOrNot,
+    orderTable,
+    deliverTable,
+    createTime,
+    remark,
+  } = item;
   const [lineThrough, setLineThrough] = useState("");
   const [done, setDone] = useState(doneOrNot);
   const lineThroughHandler = () => {
@@ -16,7 +24,7 @@ const ItemList = ({ item, setNotDone }) => {
       })
       .then((res) => {
         if (res.data.length === 1) {
-          setNotDone(false)
+          setNotDone(false);
         }
       });
     if (done === 1) {
@@ -28,16 +36,19 @@ const ItemList = ({ item, setNotDone }) => {
     }
   };
   return (
-    <div className="itemList" onClick={lineThroughHandler}>
-      <div className="itemBtn">
-        <div className="doneBtn">
-          <i className="bi bi-hand-index"></i>
-          <span>完成</span>
+    <>
+      <div className="itemList" onClick={lineThroughHandler}>
+        <div className="itemBtn">
+          <div className="doneBtn">
+            <i className="bi bi-hand-index"></i>
+            <span>完成</span>
+          </div>
+          <span className={`name l${done} ${lineThrough}`}>{mealName}</span>
         </div>
-        <span className={`name l${done} ${lineThrough}`}>{mealName}</span>
+        <span className={`quantity l${done} ${lineThrough}`}>{quantity}</span>
       </div>
-      <span className={`quantity l${done} ${lineThrough}`}>{quantity}</span>
-    </div>
+      {remark && (<span>來自{orderTable}的留言: {remark}</span>)}
+    </>
   );
 };
 
