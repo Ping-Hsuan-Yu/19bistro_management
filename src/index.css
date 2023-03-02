@@ -140,7 +140,6 @@ h6 {
     font-size: 2rem;
 }
 
-.lineThrough,
 .l1 {
     text-decoration: line-through;
     color: var(--light-gray);

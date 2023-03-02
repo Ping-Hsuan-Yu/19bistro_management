@@ -12,7 +12,6 @@ const ItemList = ({ item, setNotDone }) => {
     createTime,
     remark,
   } = item;
-  const [lineThrough, setLineThrough] = useState("");
   const [done, setDone] = useState(doneOrNot);
   const lineThroughHandler = () => {
     axios
@@ -22,18 +21,10 @@ const ItemList = ({ item, setNotDone }) => {
         createTime: createTime,
         doneOrNot: doneOrNot,
       })
+      .then(done === 1 ? setDone(0) : setDone(1))
       .then((res) => {
-        if (res.data.length === 1) {
-          setNotDone(false);
-        }
+        res.data.length === 1 ? setNotDone(false) : setNotDone(true);
       });
-    if (done === 1) {
-      setLineThrough("");
-      setDone(0);
-    } else {
-      setLineThrough("lineThrough");
-      setDone(1);
-    }
   };
   return (
     <>
@@ -43,9 +34,9 @@ const ItemList = ({ item, setNotDone }) => {
             <i className="bi bi-hand-index"></i>
             <span>完成</span>
           </div>
-          <span className={`name l${done} ${lineThrough}`}>{mealName}</span>
+          <span className={`name l${done}`}>{mealName}</span>
         </div>
-        <span className={`quantity l${done} ${lineThrough}`}>{quantity}</span>
+        <span className={`quantity l${done}`}>{quantity}</span>
       </div>
       {remark && (
         <span>
