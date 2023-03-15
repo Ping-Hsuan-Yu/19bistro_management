@@ -2,16 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 
 const ItemList = ({ item, setNotDone }) => {
-  const {
-    itemNum,
-    quantity,
-    mealName,
-    doneOrNot,
-    orderTable,
-    deliverTable,
-    createTime,
-    remark,
-  } = item;
+  const { itemNum, quantity, mealName, doneOrNot, orderTable, deliverTable, createTime, remark } = item;
   const [done, setDone] = useState(doneOrNot);
   const lineThroughHandler = () => {
     axios

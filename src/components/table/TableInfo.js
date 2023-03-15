@@ -90,27 +90,19 @@ const TableInfo = ({ id, setShowTableInfo, Toast }) => {
   const [callesStatus, setCallesStatus] = useState(false);
 
   useEffect(() => {
-    axios
-      .post("http://localhost:1802/tableandtime", { deliverTable: id })
-      .then((response) => {
-        setOnGoingList(response.data);
-      });
-    axios
-      .post("http://localhost:1802/doneitem", { orderTable: id })
-      .then((response) => {
-        setDoneItemList(response.data);
-      });
-    axios
-      .post("http://localhost:1802/total", { orderTable: id })
-      .then((response) => {
-        setTotal(response.data[0].total);
-      });
-    axios
-      .post("http://localhost:1802/tablestatus", { tableNum: id })
-      .then((response) => {
-        setTableStatus(response.data[0].seated === 0 ? true : false);
-        setCallesStatus(response.data[0].called === 1 ? true : false);
-      });
+    axios.post("http://localhost:1802/tableandtime", { deliverTable: id }).then((response) => {
+      setOnGoingList(response.data);
+    });
+    axios.post("http://localhost:1802/doneitem", { orderTable: id }).then((response) => {
+      setDoneItemList(response.data);
+    });
+    axios.post("http://localhost:1802/total", { orderTable: id }).then((response) => {
+      setTotal(response.data[0].total);
+    });
+    axios.post("http://localhost:1802/tablestatus", { tableNum: id }).then((response) => {
+      setTableStatus(response.data[0].seated === 0 ? true : false);
+      setCallesStatus(response.data[0].called === 1 ? true : false);
+    });
   }, []);
 
   const checkoutHandler = () => {
@@ -192,9 +184,7 @@ const TableInfo = ({ id, setShowTableInfo, Toast }) => {
               <i className="bi bi-cart-check"></i>
               <span className="og-name">結帳</span>
             </div>
-            <span className="og-quantity">
-              ${Intl.NumberFormat("en").format(total)}
-            </span>
+            <span className="og-quantity">${Intl.NumberFormat("en").format(total)}</span>
           </div>
         )}
       </div>

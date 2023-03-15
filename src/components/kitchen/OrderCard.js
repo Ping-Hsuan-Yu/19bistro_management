@@ -22,13 +22,11 @@ const OrderCard = ({ orderInfo }) => {
         <div className="card" id={deliverTable}>
           <div className="cardHead">
             <span className="table">{deliverTable}</span>
-            <span className="number">
-              No.{(orderListID + 1000).toString().slice(1, 4)}
-            </span>
+            <span className="number">No.{(orderListID + 1000).toString().slice(1, 4)}</span>
           </div>
           <div className="cardContent">
             {orderListItems.map((obj, index) => (
-              <ItemList item={obj} key={index} setNotDone={setNotDone}/>
+              <ItemList item={obj} key={index} setNotDone={setNotDone} />
             ))}
           </div>
           <div className="createTime">
